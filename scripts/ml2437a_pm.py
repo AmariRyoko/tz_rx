@@ -80,7 +80,7 @@ class ml2437a_controller(object):
 
         self.power_flag = 1
 
-    def voltage_start(self,q):
+    def vol_start(self,q):
         self.power_flog = 0
         time.sleep(1)
 
@@ -92,7 +92,7 @@ class ml2437a_controller(object):
 
         self.power_flog = 1
 
-    def voltage_stop(self,q):
+    def vol_stop(self,q):
         self.power_flog = 0
         time.sleep(1)
 
@@ -104,7 +104,7 @@ class ml2437a_controller(object):
 
         self.power_flog = 1
 
-    def value_start(self,q):
+    def val_start(self,q):
         self.power_flog = 0
         time.sleep(1)
 
@@ -116,7 +116,7 @@ class ml2437a_controller(object):
 
         self.power_flog = 1
 
-    def value_stop(self,q):
+    def val_stop(self,q):
         self.power_flog = 0
         time.sleep(1)
 
