@@ -272,7 +272,7 @@ class ml2437a_driver(object):
 
         return count
 
-    def set_voltage_srart(self, vstart, output = 1):
+    def set_voltage_start(self, vstart, output = 1):
 
         self.com.send('OBVST %d, %f' %(output, vstart))
 
