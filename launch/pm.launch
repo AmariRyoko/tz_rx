@@ -1,0 +1,12 @@
+<launch>
+
+
+
+  <node pkg="tz_rx" name="ml2437a" type="ml2437a_pm.py" required="true" output="screen">
+    <param name="~port" value="13" />
+    <param name="~host" value="192.168.100.44" />
+  </node>
+
+  
+
+</launch>
