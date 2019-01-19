@@ -1,0 +1,117 @@
+<launch>
+
+  <node pkg = "tz_rx"
+        name = "sis_bias_vol_reader_ch1"
+        type = "relay.py">
+    <param name = "config_file"
+           value = "$(find tz_rx)/relay_conf/sis_bias_vol_reader_ch1.conf" />
+
+  </node>
+
+  <node pkg = "tz_rx"
+        name = "sis_bias_cur_reader_ch1"
+        type = "relay.py">
+    <param name = "config_file"
+           value = "$(find tz_rx)/relay_conf/sis_bias_cur_reader_ch1.conf" />
+  </node>
+
+  <node pkg = "tz_rx"
+        name = "sis_bias_vol_writer_ch1"
+        type = "relay.py">
+    <param name = "config_file"
+           value = "$(find tz_rx)/relay_conf/sis_bias_vol_writer_ch1.conf" />
+  </node>
+
+  <node pkg = "tz_rx"
+        name = "sis_bias_vol_reader_ch2"
+        type = "relay.py">
+    <param name = "config_file"
+           value = "$(find tz_rx)/relay_conf/sis_bias_vol_reader_ch2.conf" />
+
+  </node>
+
+  <node pkg = "tz_rx"
+        name = "sis_bias_cur_reader_ch2"
+        type = "relay.py">
+    <param name = "config_file"
+           value = "$(find tz_rx)/relay_conf/sis_bias_cur_reader_ch2.conf" />
+  </node>
+
+  <node pkg = "tz_rx"
+        name = "sis_bias_vol_writer_ch2"
+        type = "relay.py">
+    <param name = "config_file"
+           value = "$(find tz_rx)/relay_conf/sis_bias_vol_writer_ch2.conf" />
+  </node>
+
+  <node pkg = "tz_rx"
+        name = "sis_bias_vol_reader_ch3"
+        type = "relay.py">
+    <param name = "config_file"
+           value = "$(find tz_rx)/relay_conf/sis_bias_vol_reader_ch3.conf" />
+
+  </node>
+
+  <node pkg = "tz_rx"
+        name = "sis_bias_cur_reader_ch3"
+        type = "relay.py">
+    <param name = "config_file"
+           value = "$(find tz_rx)/relay_conf/sis_bias_cur_reader_ch3.conf" />
+  </node>
+
+  <node pkg = "tz_rx"
+        name = "sis_bias_vol_writer_ch3"
+        type = "relay.py">
+    <param name = "config_file"
+           value = "$(find tz_rx)/relay_conf/sis_bias_vol_writer_ch3.conf" />
+  </node>
+
+  <node pkg = "tz_rx"
+        name = "sis_bias_vol_reader_ch4"
+        type = "relay.py">
+    <param name = "config_file"
+           value = "$(find tz_rx)/relay_conf/sis_bias_vol_reader_ch4.conf" />
+
+  </node>
+
+  <node pkg = "tz_rx"
+        name = "sis_bias_cur_reader_ch4"
+        type = "relay.py">
+    <param name = "config_file"
+           value = "$(find tz_rx)/relay_conf/sis_bias_cur_reader_ch4.conf" />
+  </node>
+
+  <node pkg = "tz_rx"
+        name = "sis_bias_vol_writer_ch4"
+        type = "relay.py">
+    <param name = "config_file"
+           value = "$(find tz_rx)/relay_conf/sis_bias_vol_writer_ch4.conf" />
+  </node>
+
+  <node pkg = "tz_rx"
+        name = "pm_power_reader_ch1"
+        type = "relay.py">
+    <param name = "config_file"
+           value = "$(find tz_rx)/relay_conf/pm_power_reader_ch1.conf" />
+  </node>
+
+  <node pkg = "tz_rx"
+        name = "pm_power_reader_ch2"
+        type = "relay.py">
+    <param name = "config_file"
+           value = "$(find tz_rx)/relay_conf/pm_power_reader_ch2.conf" />
+  </node>
+
+  <node pkg="tz_rx" name="cpz340816" type="cpz340816.py" required="true" output="screen">
+    <param name="~rate" value="0.1" />
+    <param name="~rsw_id" value="0" />
+  </node>
+
+  <node pkg="tz_rx" name="cpz3177" type="cpz3177.py" required="true" output="screen">
+    <param name="~rate" value="0.001" />
+    <param name="~rsw_id" value="0" />
+    <param name="~diffch_list" value="[1, 2, 3, 4]" />
+    <param name="~pm_ch" value="10" />
+  </node>
+
+</launch>
