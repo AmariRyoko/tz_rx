@@ -35,7 +35,7 @@ class ml2437a_controller(object):
         self.sub_val_stop = rospy.Subscriber("topic_sub_val_stop", Float64, self.val_stop)
 
 #flag
-        self.power_flag = 1
+        self.power_flag = 0
 
 #switch
     def power_switch(self,q):
@@ -66,7 +66,7 @@ class ml2437a_controller(object):
         msg.data = int(ret)
         self.pub_ave_onoff.publish(msg)
 
-        self.power_flag = 1
+        self.power_flag = 0
 
     def ave_count(self,q):
         self.power_flag = 0
@@ -78,7 +78,7 @@ class ml2437a_controller(object):
         msg.data = int(ret)
         self.pub_ave_count.publish(msg)
 
-        self.power_flag = 1
+        self.power_flag = 0
 
     def vol_start(self,q):
         self.power_flog = 0
@@ -90,7 +90,7 @@ class ml2437a_controller(object):
         msg.data = float(ret)
         self.pub_vol_start.publish(msg)
 
-        self.power_flog = 1
+        self.power_flog = 0
 
     def vol_stop(self,q):
         self.power_flog = 0
@@ -102,7 +102,7 @@ class ml2437a_controller(object):
         msg.data = float(ret)
         self.pub_vol_stop.publish(msg)
 
-        self.power_flog = 1
+        self.power_flog = 0
 
     def val_start(self,q):
         self.power_flog = 0
@@ -114,7 +114,7 @@ class ml2437a_controller(object):
         msg.data = float(ret)
         self.pub_val_start.publish(msg)
 
-        self.power_flog = 1
+        self.power_flog = 0
 
     def val_stop(self,q):
         self.power_flog = 0
@@ -126,7 +126,7 @@ class ml2437a_controller(object):
         msg.data = float(ret)
         self.pub.val_stop.publish(msg)
 
-        self.power_flog = 1
+        self.power_flog = 0
 
     def start_thread(self):
         th1 = threading.Thread(target=self.power)
