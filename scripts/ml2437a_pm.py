@@ -26,7 +26,7 @@ class ml2437a_controller(object):
         self.pub_ave_count = rospy.Publisher("topic_pub_ave_count", Int32, queue_size = 1)
         self.sub_ave_count = rospy.Subscriber("topic_sub_ave_count", Int32, self.ave_count)
         self.pub_vol_start = rospy.Publisher("topic_pub_vol_start", Float64, queue_size = 1)
-        self.sub_vol_start = rospy.Subscriber("topic_sub_vol_start", Float64, self.vol_start)
+        self.sub_vol_start = rospy.Subscriber("topic_sub_vol_start", String, self.vol_start)
         self.pub_vol_stop = rospy.Publisher("topic_pub_vol_stop", Float64, queue_size = 1)
         self.sub_vol_stop = rospy.Subscriber("topic_sub_vol_stop", Float64, self.vol_stop)
         self.pub_val_start = rospy.Publisher("topic_pub_val_start", Float64, queue_size = 1)
@@ -86,8 +86,8 @@ class ml2437a_controller(object):
 
         self.pm.set_voltage_start(q.data)
         ret = self.pm.query_voltage_start()
-        msg = Float64()
-        msg.data = float(ret)
+        msg = String()
+        msg.data = ret
         self.pub_vol_start.publish(msg)
 
         self.power_flog = 0
