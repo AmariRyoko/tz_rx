@@ -124,7 +124,7 @@ class ml2437a_controller(object):
         ret = self.pm.query_value_stop()
         msg = String()
         msg.data = ret
-        self.pub.val_stop.publish(msg)
+        self.pub_val_stop.publish(msg)
 
         self.power_flog = 0
 
