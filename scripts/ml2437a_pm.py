@@ -285,15 +285,15 @@ class ml2437a_driver(object):
 
         return ret
 
-    def set_voltege_stop(self, vstop, output = 1):
+    def set_voltege_stop(self, vstop, output = '1'):
 
-        self.com.send('OBVSP %f, %f' %(output, vstop))
+        self.com.send('OBVSP %s, %f' %(output, vstop))
 
         return
 
-    def query_voltage_stop(self, output = 1):
+    def query_voltage_stop(self, output = '1'):
 
-        self.com.send('OBVSP? %f' %(output))
+        self.com.send('OBVSP? %s' %(output))
         ret = self.com.readline()
 
         return ret
