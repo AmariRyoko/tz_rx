@@ -27,11 +27,11 @@ class ml2437a_controller(object):
         self.sub_ave_count = rospy.Subscriber("topic_sub_ave_count", Int32, self.ave_count)
         self.pub_vol_start = rospy.Publisher("topic_pub_vol_start", String, queue_size = 1)
         self.sub_vol_start = rospy.Subscriber("topic_sub_vol_start", Float64, self.vol_start)
-        self.pub_vol_stop = rospy.Publisher("topic_pub_vol_stop", Float64, queue_size = 1)
+        self.pub_vol_stop = rospy.Publisher("topic_pub_vol_stop", String, queue_size = 1)
         self.sub_vol_stop = rospy.Subscriber("topic_sub_vol_stop", Float64, self.vol_stop)
-        self.pub_val_start = rospy.Publisher("topic_pub_val_start", Float64, queue_size = 1)
+        self.pub_val_start = rospy.Publisher("topic_pub_val_start", String, queue_size = 1)
         self.sub_val_start = rospy.Subscriber("topic_sub_val_start", Float64, self.val_start)
-        self.pub_val_stop = rospy.Publisher("topic_pub_val_stop", Float64, queue_size = 1)
+        self.pub_val_stop = rospy.Publisher("topic_pub_val_stop", String, queue_size = 1)
         self.sub_val_stop = rospy.Subscriber("topic_sub_val_stop", Float64, self.val_stop)
 
 #flag
@@ -98,8 +98,8 @@ class ml2437a_controller(object):
 
         self.pm.set_voltage_stop(q.data)
         ret = self.pm.query_voltage_stop()
-        msg = Float64()
-        msg.data = float(ret)
+        msg = String()
+        msg.data = ret
         self.pub_vol_stop.publish(msg)
 
         self.power_flog = 0
@@ -110,8 +110,8 @@ class ml2437a_controller(object):
 
         self.pm.set_volue_start(q.data)
         ret = self.pm.query_value_start()
-        msg = Float64()
-        msg.data = float(ret)
+        msg = String()
+        msg.data = ret
         self.pub_val_start.publish(msg)
 
         self.power_flog = 0
@@ -122,8 +122,8 @@ class ml2437a_controller(object):
 
         self.pm.set_value_stop(q.data)
         ret = self.pm.query_value_stop()
-        msg = Float64()
-        msg.data = float(ret)
+        msg = String()
+        msg.data = ret
         self.pub.val_stop.publish(msg)
 
         self.power_flog = 0
@@ -298,28 +298,28 @@ class ml2437a_driver(object):
 
         return ret
 
-    def set_value_start(self, start, output = 1):
+    def set_value_start(self, start, output = '1'):
 
-        self.com.send('OBDST %f, DBM, %f' %(output, start))
+        self.com.send('OBDST %s, DBM, %f' %(output, start))
 
         return
 
-    def query_value_start(self, output = 1):
+    def query_value_start(self, output = '1'):
 
-        self.com.send('OBDST? %f' %(output))
+        self.com.send('OBDST? %s' %(output))
         ret = self.com.readline()
 
         return ret
 
-    def set_value_stop(self, stop, output = 1):
+    def set_value_stop(self, stop, output = '1'):
 
-        self.com.send('OBDSP %f, DBM, %f' %(output, stop))
+        self.com.send('OBDSP %s, DBM, %f' %(output, stop))
 
         return
 
-    def query_value_stop(self, output = 1):
+    def query_value_stop(self, output = '1'):
 
-        self.com.send('OBDSP? %f' %(output))
+        self.com.send('OBDSP? %s' %(output))
         ret = self.com.readline()
 
         return ret
