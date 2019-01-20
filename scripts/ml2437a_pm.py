@@ -276,7 +276,6 @@ class ml2437a_driver(object):
 
 #self.com.send('OBVST %s, %f' %(output, vstart))
         self.com.send('OBVST %s, 5.0' %(output)
-        a = vstart
         return
 
     def query_voltage_start(self, output = '1'):
