@@ -108,7 +108,7 @@ class ml2437a_controller(object):
         self.power_flog = 0
         time.sleep(1)
 
-        self.pm.set_volue_start(q.data)
+        self.pm.set_value_start(q.data)
         ret = self.pm.query_value_start()
         msg = String()
         msg.data = ret
