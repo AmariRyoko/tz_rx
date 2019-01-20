@@ -272,52 +272,52 @@ class ml2437a_driver(object):
 
         return count
 
-    def set_voltage_start(self, vstart, output = 'A'):
+    def set_voltage_start(self, vstart, output = 1):
 
-        self.com.send('OBVST %s, %f' %(output, vstart))
+        self.com.send('OBVST %f, %f' %(output, vstart))
 
         return
 
-    def query_voltage_start(self, output = 'A'):
+    def query_voltage_start(self, output = 1):
 
-        self.com.send('OBVST? %s' %(output))
+        self.com.send('OBVST? %f' %(output))
         ret = self.com.readline()
 
         return ret
 
-    def set_voltege_stop(self, vstop, output = 'A'):
+    def set_voltege_stop(self, vstop, output = 1):
 
-        self.com.send('OBVSP %s, %f' %(output, vstop))
+        self.com.send('OBVSP %f, %f' %(output, vstop))
 
         return
 
-    def query_voltage_stop(self, output = 'A'):
+    def query_voltage_stop(self, output = 1):
 
-        self.com.send('OBVSP? %s' %(output))
+        self.com.send('OBVSP? %f' %(output))
         ret = self.com.readline()
 
         return ret
 
-    def set_value_start(self, start, output = 'A'):
+    def set_value_start(self, start, output = 1):
 
-        self.com.send('OBDST %s, DBM, %f' %(output, start))
+        self.com.send('OBDST %f, DBM, %f' %(output, start))
 
         return
 
-    def query_value_start(self, output = 'A'):
+    def query_value_start(self, output = 1):
 
-        self.com.send('OBDST? %s' %(output))
+        self.com.send('OBDST? %f' %(output))
         ret = self.com.readline()
 
         return ret
 
-    def set_value_stop(self, stop, output = 'A'):
+    def set_value_stop(self, stop, output = 1):
 
-        self.com.send('OBDSP %s, DBM, %f' %(output, stop))
+        self.com.send('OBDSP %f, DBM, %f' %(output, stop))
 
         return
 
-    def query_value_stop(self, output = 'A'):
+    def query_value_stop(self, output = 1):
 
         self.com.send('OBDSP? %s' %(output))
         ret = self.com.readline()
