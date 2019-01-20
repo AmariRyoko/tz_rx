@@ -25,7 +25,7 @@ class ml2437a_controller(object):
         self.sub_ave_onoff = rospy.Subscriber("topic_sub_ave_onoff", Int32, self.ave_onoff)
         self.pub_ave_count = rospy.Publisher("topic_pub_ave_count", Int32, queue_size = 1)
         self.sub_ave_count = rospy.Subscriber("topic_sub_ave_count", Int32, self.ave_count)
-        self.pub_vol_start = rospy.Publisher("topic_pub_vol_start", Stiring, queue_size = 1)
+        self.pub_vol_start = rospy.Publisher("topic_pub_vol_start", String, queue_size = 1)
         self.sub_vol_start = rospy.Subscriber("topic_sub_vol_start", Float64, self.vol_start)
         self.pub_vol_stop = rospy.Publisher("topic_pub_vol_stop", Float64, queue_size = 1)
         self.sub_vol_stop = rospy.Subscriber("topic_sub_vol_stop", Float64, self.vol_stop)
