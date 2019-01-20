@@ -272,13 +272,13 @@ class ml2437a_driver(object):
 
         return count
 
-    def set_voltage_start(self, vstart, output = 'A'):
+    def set_voltage_start(self, vstart, output = '1'):
 
         self.com.send('OBVST %s, %f' %(output, vstart))
 
         return
 
-    def query_voltage_start(self, output = 'A'):
+    def query_voltage_start(self, output = '1'):
 
         self.com.send('OBVST? %s' %(output))
         ret = self.com.readline()
