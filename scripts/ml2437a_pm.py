@@ -7,7 +7,6 @@ import time
 import pymeasure
 
 import rospy
-import threading
 import std_msgs
 from std_msgs.msg import Float64
 from std_msgs.msg import String
@@ -19,8 +18,6 @@ class ml2437a_controller(object):
 
         self.pm = ml2437a_driver()
 
-        self.sub_power = rospy.Subscriber("topic_sub_power", Int32, self.power_switch)
-        self.pub_power = rospy.Publisher("topic_pub_power", Float64, queue_size = 1)
         self.pub_ave_onoff = rospy.Publisher("topic_pub_ave_onoff", Int32, queue_size = 1)
         self.sub_ave_onoff = rospy.Subscriber("topic_sub_ave_onoff", Int32, self.ave_onoff)
         self.pub_ave_count = rospy.Publisher("topic_pub_ave_count", Int32, queue_size = 1)
@@ -34,30 +31,8 @@ class ml2437a_controller(object):
         self.pub_val_stop = rospy.Publisher("topic_pub_val_stop", Float64, queue_size = 1)
         self.sub_val_stop = rospy.Subscriber("topic_sub_val_stop", Float64, self.val_stop)
 
-#flag
-        self.power_flag = 0
-
-#switch
-    def power_switch(self,q):
-        self.power_flag = q.data
-        return
-
-#method
-    def power(self):
-        while not rospy.is_shutdown():
-            while self.power_flag == 0 :
-                continue
-            while self.power_flag == 1 :
-                ret = self.pm.measure()
-                msg = Float64()
-                msg.data = float(ret)
-                self.pub_power.publish(msg)
-                continue
-            continue
 
     def ave_onoff(self,q):
-        self.power_flag = 0
-        time.sleep(1)
 
         self.pm.set_average_onoff(q.data)
 
@@ -66,11 +41,8 @@ class ml2437a_controller(object):
         msg.data = int(ret)
         self.pub_ave_onoff.publish(msg)
 
-        self.power_flag = 0
 
     def ave_count(self,q):
-        self.power_flag = 0
-        time.sleep(1)
 
         self.pm.set_average_count(q.data)
         ret = self.pm.query_average_count()
@@ -78,11 +50,8 @@ class ml2437a_controller(object):
         msg.data = int(ret)
         self.pub_ave_count.publish(msg)
 
-        self.power_flag = 0
 
     def vol_start(self,q):
-        self.power_flog = 0
-        time.sleep(1)
 
         self.pm.set_voltage_start(q.data)
         ret = self.pm.query_voltage_start()
@@ -91,11 +60,8 @@ class ml2437a_controller(object):
         msg.data = ret
         self.pub_vol_start.publish(msg)
 
-        self.power_flog = 0
 
     def vol_stop(self,q):
-        self.power_flog = 0
-        time.sleep(1)
 
         self.pm.set_voltage_stop(q.data)
         ret = self.pm.query_voltage_stop()
@@ -104,11 +70,8 @@ class ml2437a_controller(object):
         msg.data = ret
         self.pub_vol_stop.publish(msg)
 
-        self.power_flog = 0
 
     def val_start(self,q):
-        self.power_flog = 0
-        time.sleep(1)
 
         self.pm.set_value_start(q.data)
         ret = self.pm.query_value_start()
@@ -117,11 +80,8 @@ class ml2437a_controller(object):
         msg.data = ret
         self.pub_val_start.publish(msg)
 
-        self.power_flog = 0
 
     def val_stop(self,q):
-        self.power_flog = 0
-        time.sleep(1)
 
         self.pm.set_value_stop(q.data)
         ret = self.pm.query_value_stop()
@@ -130,12 +90,6 @@ class ml2437a_controller(object):
         msg.data = ret
         self.pub_val_stop.publish(msg)
 
-        self.power_flog = 0
-
-    def start_thread(self):
-        th1 = threading.Thread(target=self.power)
-        th1.setDaemon(True)
-        th1.start()
 
 
 class ml2437a_driver(object):
@@ -334,7 +288,6 @@ if __name__ == "__main__" :
     GPIB = rospy.get_param('~port')
     IP = rospy.get_param('~host')
     ctrl = ml2437a_controller()
-    ctrl.start_thread()
     rospy.spin()
 
 #2018/11/01
