@@ -112,7 +112,7 @@ class ml2437a_controller(object):
 
         self.pm.set_value_start(q.data)
         ret = self.pm.query_value_start()
-        ret = float(ret[12:])
+        ret = float(ret[11:])
         msg = Float64()
         msg.data = ret
         self.pub_val_start.publish(msg)
@@ -125,7 +125,7 @@ class ml2437a_controller(object):
 
         self.pm.set_value_stop(q.data)
         ret = self.pm.query_value_stop()
-        ret = float(ret[12:])
+        ret = float(ret[11:])
         msg = Float64()
         msg.data = ret
         self.pub_val_stop.publish(msg)
