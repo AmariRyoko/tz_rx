@@ -86,7 +86,7 @@ class ml2437a_controller(object):
 
         self.pm.set_voltage_start(q.data)
         ret = self.pm.query_voltage_start()
-        ret = float(ret[9:])
+        ret = float(ret[8:])
         msg = Float64()
         msg.data = ret
         self.pub_vol_start.publish(msg)
