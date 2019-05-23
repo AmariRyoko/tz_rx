@@ -105,7 +105,7 @@ class ml2437a_driver(object):
     def measure(self, ch=1, resolution=3):
         '''
         DESCRIPTION
-        ================
+        =================
         This function queries the input power level.
 
         ARGUMENTS
